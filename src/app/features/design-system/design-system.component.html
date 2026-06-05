@@ -1,0 +1,169 @@
+<div class="app-container py-10 md:py-14">
+  <header class="mb-12 border-b border-line pb-10">
+    <p class="text-label-sm uppercase tracking-widest text-brand">Bendecal UI</p>
+    <h1 class="mt-2">Design system</h1>
+    <p class="section-subtitle mb-0 mt-4 max-w-prose">
+      Theme tokens, typography, and reusable patterns for the decal kit storefront. All values live in
+      <code class="rounded bg-surface-muted px-1.5 py-0.5 text-body-sm text-ink">tailwind.config.js</code>
+      and <code class="rounded bg-surface-muted px-1.5 py-0.5 text-body-sm text-ink">src/styles.scss</code>.
+    </p>
+  </header>
+
+  <section class="mb-14" aria-labelledby="colors-heading">
+    <h2 id="colors-heading" class="section-title">Colors</h2>
+    <p class="section-subtitle">Brand rose-red, neutral surfaces, semantic states.</p>
+
+    <h3 class="mb-4 text-heading-sm text-ink-secondary">Brand</h3>
+    <div class="mb-8 grid grid-cols-2 gap-3 sm:grid-cols-5 lg:grid-cols-10">
+      @for (step of brandSteps; track step) {
+        <div class="swatch" [class]="'bg-brand-' + step">
+          <span>{{ step }}</span>
+        </div>
+      }
+    </div>
+
+    <div class="grid gap-6 md:grid-cols-3">
+      <div>
+        <h3 class="mb-3 text-heading-sm text-ink-secondary">Surface</h3>
+        <div class="space-y-2">
+          <div class="swatch border border-line bg-surface text-ink">DEFAULT</div>
+          <div class="swatch bg-surface-subtle text-ink">subtle</div>
+          <div class="swatch bg-surface-muted text-ink">muted</div>
+          <div class="swatch bg-surface-inverse text-ink-inverse">inverse</div>
+        </div>
+      </div>
+      <div>
+        <h3 class="mb-3 text-heading-sm text-ink-secondary">Ink (text)</h3>
+        <div class="space-y-2 rounded-lg border border-line bg-surface p-4">
+          <p class="text-ink">Default — primary text</p>
+          <p class="text-ink-secondary">Secondary — descriptions</p>
+          <p class="text-ink-muted">Muted — hints, captions</p>
+        </div>
+      </div>
+      <div>
+        <h3 class="mb-3 text-heading-sm text-ink-secondary">Semantic</h3>
+        <div class="flex flex-wrap gap-2">
+          <span class="badge-success">Success</span>
+          <span class="badge-warning">Warning</span>
+          <span class="badge bg-danger-subtle text-danger">Danger</span>
+          <span class="badge bg-accent-subtle text-accent-foreground">Accent</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="mb-14" aria-labelledby="type-heading">
+    <h2 id="type-heading" class="section-title">Typography</h2>
+    <p class="section-subtitle">Display: Barlow Condensed · Body: DM Sans</p>
+
+    <div class="card space-y-6">
+      <p class="font-display text-display-xl uppercase text-ink">Display XL</p>
+      <p class="font-display text-display-lg uppercase text-ink">Display LG</p>
+      <p class="font-display text-display-md uppercase text-ink">Display MD</p>
+      <p class="font-display text-display-sm uppercase text-ink">Display SM</p>
+      <hr class="border-line" />
+      <p class="text-heading-lg text-ink">Heading LG — section titles</p>
+      <p class="text-heading-md text-ink">Heading MD</p>
+      <p class="text-body-lg text-ink-secondary">Body LG — lead paragraphs and kit descriptions.</p>
+      <p class="text-body-md text-ink-secondary">Body MD — default UI copy.</p>
+      <p class="text-body-sm text-ink-muted">Body SM — metadata, SKU, fitment years.</p>
+      <p class="text-label-sm uppercase tracking-widest text-ink-muted">Label SM — overlines</p>
+    </div>
+  </section>
+
+  <section class="mb-14" aria-labelledby="buttons-heading">
+    <h2 id="buttons-heading" class="section-title">Buttons</h2>
+    <p class="section-subtitle">Use <code class="rounded bg-surface-muted px-1 py-0.5 text-body-sm">btn-*</code> component classes.</p>
+
+    <div class="card flex flex-wrap gap-3">
+      <button type="button" class="btn-primary">Primary</button>
+      <button type="button" class="btn-secondary">Secondary</button>
+      <button type="button" class="btn-ghost">Ghost</button>
+      <button type="button" class="btn-accent">Accent</button>
+      <button type="button" class="btn-danger">Danger</button>
+      <button type="button" class="btn-primary btn-lg">Large</button>
+      <button type="button" class="btn-primary btn-sm">Small</button>
+      <button type="button" class="btn-primary" disabled>Disabled</button>
+    </div>
+  </section>
+
+  <section class="mb-14" aria-labelledby="forms-heading">
+    <h2 id="forms-heading" class="section-title">Forms</h2>
+    <p class="section-subtitle">Fitment filters and checkout fields.</p>
+
+    <div class="card max-w-md space-y-4">
+      <div>
+        <label class="label" for="ds-make">Make</label>
+        <select id="ds-make" class="select">
+          <option>Yamaha</option>
+          <option>Honda</option>
+          <option>Kawasaki</option>
+        </select>
+      </div>
+      <div>
+        <label class="label" for="ds-model">Model</label>
+        <input id="ds-model" type="text" class="input" placeholder="e.g. YZF-R6" />
+      </div>
+      <div>
+        <label class="label" for="ds-year-error">Year (error state)</label>
+        <input id="ds-year-error" type="text" class="input input-error" value="1999" aria-invalid="true" />
+        <p class="mt-1.5 text-body-sm text-danger">No kits found for this year.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="mb-14" aria-labelledby="badges-heading">
+    <h2 id="badges-heading" class="section-title">Badges</h2>
+    <div class="flex flex-wrap gap-2">
+      <span class="badge-brand">New</span>
+      <span class="badge-neutral">Matte finish</span>
+      <span class="badge-fitment">Fits 2017–2020</span>
+      <span class="badge-success">In stock</span>
+      <span class="badge-warning">Low stock</span>
+    </div>
+  </section>
+
+  <section class="mb-14" aria-labelledby="cards-heading">
+    <h2 id="cards-heading" class="section-title">Cards</h2>
+    <p class="section-subtitle">Product tile pattern for catalog grids.</p>
+
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <article class="card-kit">
+        <div class="aspect-[4/3] bg-gradient-to-br from-surface-sunken to-surface-muted"></div>
+        <div class="p-4">
+          <div class="mb-2 flex flex-wrap gap-2">
+            <span class="badge-fitment">YZF-R6</span>
+            <span class="badge-brand">Full kit</span>
+          </div>
+          <h3 class="font-display text-xl uppercase tracking-wide text-ink">Race replica kit</h3>
+          <p class="mt-1 text-body-sm text-ink-secondary">2017–2020 · 12 pieces</p>
+          <div class="mt-4 flex items-center justify-between">
+            <p class="text-heading-md text-ink">€189.00</p>
+            <button type="button" class="btn-primary btn-sm">View kit</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="card">
+        <h3 class="text-heading-md text-ink">Content card</h3>
+        <p class="mt-2 text-body-sm text-ink-secondary">Install guides, shipping info, or CMS blocks.</p>
+      </article>
+
+      <article class="card border-brand-200 bg-brand-50">
+        <h3 class="text-heading-md text-brand-900">Highlighted card</h3>
+        <p class="mt-2 text-body-sm text-brand-800">Promotions or fitment confirmation callouts.</p>
+        <button type="button" class="btn-primary btn-sm mt-4">Confirm bike</button>
+      </article>
+    </div>
+  </section>
+
+  <section aria-labelledby="shadows-heading">
+    <h2 id="shadows-heading" class="section-title">Elevation</h2>
+    <div class="grid gap-4 sm:grid-cols-4">
+      <div class="rounded-lg border border-line bg-surface p-6 shadow-xs">shadow-xs</div>
+      <div class="rounded-lg border border-line bg-surface p-6 shadow-sm">shadow-sm</div>
+      <div class="rounded-lg border border-line bg-surface p-6 shadow-md">shadow-md</div>
+      <div class="rounded-lg border border-line bg-surface p-6 shadow-lg">shadow-lg</div>
+    </div>
+  </section>
+</div>
