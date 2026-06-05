@@ -12,7 +12,57 @@ Run `ng generate component component-name` to generate a new component. You can 
 
 ## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+```bash
+npm run build:prod
+```
+
+Les artefacts sont générés dans `dist/bendecal/browser/`.
+
+## Déploiement Cloudflare Pages
+
+### Prérequis
+
+- Repo GitHub connecté à Cloudflare Pages
+- API prod : `https://api.bendecal.com/api/v1`
+- CDN images : `https://cdn.bendecal.com`
+- Domaine cible : `https://bendecal.com`
+
+### Paramètres du projet Cloudflare Pages
+
+| Paramètre | Valeur |
+|-----------|--------|
+| Framework preset | None (ou Angular) |
+| Root directory | *(vide — racine du repo)* |
+| Build command | `npm ci && npm run build:prod` |
+| Build output directory | `dist/bendecal/browser` |
+| Node.js version | 20 (recommandé) |
+
+### Connecter le repo GitHub
+
+1. [Cloudflare Dashboard](https://dash.cloudflare.com) → **Workers & Pages** → **Create** → **Pages** → **Connect to Git**
+2. Sélectionner le repo `bendecal` (ou le monorepo contenant ce dossier)
+3. Si le shop est dans un sous-dossier du monorepo, renseigner **Root directory** : `bendecal`
+4. Renseigner les paramètres du tableau ci-dessus
+5. **Environment variables** : aucune variable requise (URLs prod dans `src/environments/environment.prod.ts`)
+6. **Save and Deploy**
+
+### Domaine custom
+
+1. Projet Pages → **Custom domains** → **Set up a custom domain**
+2. Ajouter `bendecal.com` et `www.bendecal.com`
+3. Cloudflare configure les enregistrements DNS si le domaine est déjà sur le même compte
+4. Activer **Always Use HTTPS** et la redirection `www` → apex (ou l’inverse selon votre préférence)
+
+### Routing SPA
+
+Le fichier `public/_redirects` est copié dans le build et redirige toutes les routes vers `index.html` (statut 200), requis pour le routing Angular côté client.
+
+### Vérification locale
+
+```bash
+npm ci
+npm run build:prod
+```
 
 ## Running unit tests
 
